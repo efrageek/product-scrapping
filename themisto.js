@@ -1,26 +1,28 @@
+const process = require('process');
 const puppeteer = require('puppeteer');
-const fs = require('fs');
 
-const chrome = '/usr/bin/google-chrome-stable'
+process.on('message', message => {
+    console.log(`[THEMISTO]Received message from ganymede: ${message}`);
+     doWebScraping(message)
+});
+
 
 async function doWebScraping(searchOrder) {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     await page.setDefaultNavigationTimeout(0);
     await page.goto('https://www.mercadolibre.com.ar', { waitUntil: "networkidle2" });
-    await page.type('input.nav-search-input', 'impresora');
+    await page.type('input.nav-search-input', searchOrder);
     await page.click('button.nav-search-btn');
     await page.waitForSelector('a[class="figure item-image item__js-link"] > img[src^="https"]');
-    await page.waitFor(5000);
+    await page.waitFor(3000);
 
    
 
-    //const imgs = await page.$$('a[class="figure item-image item__js-link"] > img[src^="https"]');
     const divs = await page.$$('.results-item');
-    //console.log(imgs);
+    
     console.log("divs lenght = " + divs.length);
    
-    
     const articles = [];
 
     for (const div of divs) {
@@ -48,13 +50,10 @@ async function doWebScraping(searchOrder) {
             console.log("error: ", err);
         }
     }
-    console.log(articles)
+    //console.log(articles)
 
     await browser.close()
 
-    return articles;
+    process.send(JSON.stringify(articles));
 }
 
-exports.themisto = {
-    doWebScraping
-}

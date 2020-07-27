@@ -9,6 +9,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.17.1",
     "puppeteer": "^5.2.0"
+  },
+  "engines": {
+    "node": "10.x"
+  },
+  "devDependencies": {
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7"
   }
 }
