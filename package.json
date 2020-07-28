@@ -4,16 +4,19 @@
   "description": "Scrapping service ",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --watch"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
+    "jest": "^26.1.0",
+    "mocha": "^8.0.1",
+    "mongoose": "^5.9.25",
     "puppeteer": "^5.2.0"
   },
   "engines": {
-    "node": "10.x"
+    "node": "12.18.1"
   },
   "devDependencies": {
     "ts-node": "^8.10.2",

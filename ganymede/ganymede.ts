@@ -3,12 +3,17 @@ const path = require('path');
 const { fork } = require('child_process');
 const bodyParser = require('body-parser');
 const config = require('./config.ts');
+const db = require('./db');
 
 
+//connecting to database
+const url = config.database.url
 
+db(url);
+
+// creating server 
 const app = express();
 app.use(bodyParser.json());
-
 
 
 //post
