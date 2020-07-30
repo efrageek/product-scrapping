@@ -1,9 +1,10 @@
 
 process.env.DBUSER = 'sirena_admin';
 process.env.DBPASS = 'f8vzIgHHTOMqYsRL';
-process.env.DBNAME = 'scrapping';
+process.env.TESTDBNAME = 'scrapping';
 
-const dbname = process.env.DBNAME;
+const testName = process.env.TESTDBNAME;
+const name = process.env.DBNAME;
 const user = process.env.DBUSER;
 const pass = process.env.DBPASS;
 
@@ -13,6 +14,7 @@ module.exports = {
         port: process.env.API_PORT || 8000
     },
     database: {
-        url: `mongodb+srv://${user}:${pass}@scrapping.lhpui.mongodb.net/${dbname}?retryWrites=true&w=majority`
+        url: `mongodb+srv://${user}:${pass}@scrapping.lhpui.mongodb.net/${name}?retryWrites=true&w=majority`,
+        testUrl: `mongodb+srv://${user}:${pass}@scrapping.lhpui.mongodb.net/${testName}?retryWrites=true&w=majority`
     }
 }

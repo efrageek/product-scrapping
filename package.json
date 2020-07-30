@@ -4,11 +4,14 @@
   "description": "Scrapping service ",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "test2": "mocha 'test/**/*.js'"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@shelf/jest-mongodb": "^1.2.1",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jest": "^26.1.0",
     "mocha": "^8.0.1",
