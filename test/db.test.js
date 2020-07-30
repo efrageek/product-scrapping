@@ -4,7 +4,7 @@ const config = require('../ganymede/config');
 
 //mocking search order data
 const orderData = {
-    query: 'Silla',
+    query: 'silla',
     provider: 'easy',
     options: {
         user: '[a username]',
@@ -20,11 +20,11 @@ beforeAll(async () => {
         useNewUrlParser: true,
         useUnifiedTopology: true
     });
-});
 
-afterAll(() => {
     
-  });
+    await db.connection.collections.searchorders.drop();
+    
+});
 
 test('create & save search order successfully', async () => {
     const validOrder = new SearchOrder(orderData);
@@ -40,3 +40,9 @@ test('create & save search order successfully', async () => {
     expect(savedOrder.callbackUrl).toBe(orderData.callbackUrl);
 });
 
+test('finding saved order', async () => {
+    
+    const result = await SearchOrder.findOne( {query:'silla'} );
+
+    expect(result.query === orderData.query);
+});
