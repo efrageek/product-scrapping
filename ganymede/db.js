@@ -21,11 +21,22 @@ async function connect(url) {
 
 };
 
-
+async function addOrder(order) {
+    if (order) {
+        try {
+            const saved = await order.save();
+            return saved
+            
+        } catch (error) {
+            console.error(`[DB] Error adding new order ${error}`)
+            return false
+        }
+    }
+}
 
 async function getAllOrders() {
     try {
-        const allOrders = SearchOrder.find();
+        const allOrders = await SearchOrder.find();
         console.log(allOrders);
         return allOrders 
     } catch (error) {
@@ -35,5 +46,6 @@ async function getAllOrders() {
 
 module.exports = {
     connect,
-    getAllOrders
+    getAllOrders,
+    addOrder
 };

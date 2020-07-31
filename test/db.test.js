@@ -60,5 +60,6 @@ test('finding all orders', async () => {
 
 test('getAllOrders method is returning something', async () => {
     const result = await database.getAllOrders();
+    
     expect(result).toBeDefined();
 });
